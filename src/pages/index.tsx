@@ -39,7 +39,7 @@ export default function Home() {
         <table className="table">
           <thead>
             <tr>
-              <th className="text-lg">
+              <th className="text-lg text-white">
                 <Link
                   href={{
                     search: `sort=${currentSort === "asc" ? "desc" : "asc"}`,
@@ -53,7 +53,7 @@ export default function Home() {
                   ></i>
                 </Link>
               </th>
-              <th className="text-lg">walletAddress</th>
+              <th className="text-lg text-white">walletAddress</th>
             </tr>
           </thead>
           <tbody>
