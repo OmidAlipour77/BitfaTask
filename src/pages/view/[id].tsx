@@ -25,8 +25,8 @@ export default function Home() {
     staleTime: 846000000,
   });
   if (!data) return <Loader isLoading={true} />;
-  const buySellData = data?.totalBuySellTimes?.week;
-  const profitData = data?.totalProfits?.week;
+  const buySellData = data?.totalBuySellTimes?.month;
+  const profitData = data?.totalProfits?.month;
 
   const labels = Object.keys(buySellData);
   const barData: number[] = Object.values(profitData);
