@@ -1,19 +1,18 @@
+import {
+    BarElement,
+    CategoryScale,
+    Chart as ChartJS,
+    Legend,
+    LinearScale,
+    LineController,
+    LineElement,
+    PointElement,
+    Title,
+    Tooltip
+} from "chart.js";
+import zoomPlugin from "chartjs-plugin-zoom";
 import React from "react";
 import { Bar } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  PointElement,
-  ChartData,
-  LineController,
-} from "chart.js";
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -23,7 +22,8 @@ ChartJS.register(
   Tooltip,
   Legend,
   PointElement,
-  LineController
+  LineController,
+  zoomPlugin
 );
 
 interface ComboChartProps {
@@ -32,11 +32,12 @@ interface ComboChartProps {
   lineData: number[];
 }
 
-const ComboChart: React.FC<ComboChartProps> = ({
+const ResponsiveChart: React.FC<ComboChartProps> = ({
   labels,
   barData,
   lineData,
 }) => {
+
   const getBarColor = (value: number) =>
     value < 0 ? "rgba(255, 99, 132, 0.5)" : "rgba(75, 192, 192, 0.5)";
   const getLineColor = (value: number) =>
@@ -72,7 +73,18 @@ const ComboChart: React.FC<ComboChartProps> = ({
   const options: any = {
     responsive: true,
     maintainAspectRatio: false,
+    interaction: {
+      mode: "index",
+      intersect: false,
+    },
     scales: {
+      x: {
+        type: "category",
+        ticks: {
+          autoSkip: false,
+        },
+      },
+     
       "y-axis-left": {
         type: "linear",
         position: "left",
@@ -101,10 +113,28 @@ const ComboChart: React.FC<ComboChartProps> = ({
         display: true,
         text: "Monthly chart",
       },
+      
+      zoom: {
+        zoom: {
+          wheel: {
+            enabled: true,
+          },
+          pinch: {
+            enabled: true,
+          },
+          mode: "x",
+        },
+        pan: {
+          enabled: true,
+
+          mode: "x",
+        },
+      },
     },
+  
   };
 
-  return <Bar data={data} options={options} />;
+  return <Bar className="cursor-pointer"  data={data} options={options} />;
 };
 
-export default ComboChart;
+export default ResponsiveChart;

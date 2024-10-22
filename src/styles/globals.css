@@ -21,7 +21,7 @@ body {
 }
 
 .spinner-overlay {
-  background-color: var(--background);
+  background-color: var();
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   z-index: 99;
